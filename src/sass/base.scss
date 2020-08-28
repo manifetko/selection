@@ -2,7 +2,7 @@ html,
 body {
   margin: 0rem;
 }
-body{
+body {
   height: 100%;
 }
 * {
@@ -45,6 +45,11 @@ h6 {
   background: #fff;
   display: flex;
   height: 100%;
+  &__container {
+    max-width: 1306px;
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 p {
   margin: 0;
@@ -65,7 +70,7 @@ img {
   max-width: 100%;
 }
 .container {
-  max-width: 1440px;
-  width: 100%;
-  margin: 0 auto;
+  max-width: 1146px;
+  width: 1000%;
+  margin: 0 auto 0 0;
 }

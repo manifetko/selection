@@ -1,1 +1,18 @@
-
+header(class="header")
+    img(class="header__logo" src="./imgs/logo.png")
+    nav(class="nav")
+        ul(class="nav__list")
+            li(class="nav__item") 
+                a(class="nav__link") О комплексе
+            li(class="nav__item active") 
+                a(class="nav__link") Выбор продукта
+            li(class="nav__item") 
+                a(class="nav__link") Условия покупки
+            li(class="nav__item") 
+                a(class="nav__link") Ход производства
+            li(class="nav__item") 
+                a(class="nav__link") Контакты
+    a(href="tel:8800000000" class="btn") 
+        svg(width="16" height="16" viewBox="0 0 16 16")
+            use(xlink:href="./imgs/sprites.svg#phone")
+        span(class="btn-text header__btn-text") 8 800-00-00-00

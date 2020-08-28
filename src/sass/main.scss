@@ -1,3 +1,8 @@
+@mixin desktop {
+  @media screen and (max-width: 1146px) {
+    @content;
+  }
+}
 @mixin tablets {
   @media screen and (max-width: 768px) {
     @content;
@@ -8,7 +13,28 @@
     @content;
   }
 }
-
+@font-face {
+  font-family: "Gilroy";
+  src: url("./fonts/gilroy-regular.ttf.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+.btn {
+  border: 0.125rem solid #4285f4;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  &-text {
+    margin-left: 0.75rem;
+    font-family: "Gilroy", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #2F80ED;
+    white-space: nowrap;
+  }
+}
 @import "normalize";
 @import "base";
 @import "./blocks/header.scss";

@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  margin-bottom: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 4.5rem 0 0;
+  width: 95%;
+  max-width: 1306px;
+  margin: 0 auto 0 calc(50% - 573px);
+  // calc 50%-by window and 573 - 50% by container 
+  @include desktop {
+    margin: 0 auto 0 0;
+  }
+  &__btn-text {
+    color: #14451f;
+  }
+}
+.nav {
+  margin-left: 1rem;
+  &__list {
+    display: flex;
+    align-items: center;
+    & .active {
+      border-bottom: 0.0625rem solid #4285f4;
+      padding-bottom: 0.3rem;
+    }
+  }
+  &__item {
+    margin-right: 2.375rem;
+    margin-bottom: 0.5rem;
+  }
+  &__link {
+    font-family: "Gilroy", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #000000;
+    white-space: nowrap;
+  }
+}
