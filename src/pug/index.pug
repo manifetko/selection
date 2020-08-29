@@ -9,4 +9,163 @@ html(lang="en")
     body
         div(class="wrapper")
             include ./blocks/header.pug
+            div(class="container")
+                div(class="selection")
+                    div(class="selection__header")
+                        h1(class="selection__heading") Выбор продукта
+                        div(class="selection__type")
+                            button(class="btn selection__type-btn")
+                                svg(width="17" height="19" viewBox="0 0 17 19")
+                                    use(xlink:href="./imgs/sprites.svg#parameters")
+                                span(class="btn-text") Подбор по параметрам
+                            button(class="btn selection__type-btn active")
+                                svg(width="18" height="18" viewBox="0 0 18 18")
+                                    use(xlink:href="./imgs/sprites.svg#visual")
+                                span(class="btn-text") Визуальный подбор
+                    div(class="selection__wrap")
+                        aside(class="selection__aside")
+                            div(class="filter")
+                                div(class="filter__parameter filter__weight")
+                                    h3(class="filter__parameter-heading") Фильтр1
+                                    //- <input class="form-control" name="price" id="price">
+                                    div(class="filter__slider")
+                                        div(class="filter__bar" data-start="0" data-end="120")
+                                            div(class="filter__lp" data-pos="0.2")
+                                            div(class="filter__rp" data-pos="0.8")
+                                    div(class="filter__values-wrap")
+                                        span(class="filter__value-lp") 34 кг
+                                        span(class="filter__value-rp") 120 кг
+                                div(class="filter__parameter filter__price")
+                                    h3(class="filter__parameter-heading") Стоимость
+                                    div(class="filter__slider")
+                                        div(class="filter__bar" data-start="0" data-end="71000000")
+                                            div(class="filter__lp" data-pos="0.2")
+                                            div(class="filter__rp" data-pos="0.8")
+                                    div(class="filter__values-wrap")
+                                        span(class="filter__value-lp") 1 500 &#8381;
+                                        span(class="filter__value-rp") 64 500 000 &#8381;
+                                div(class="filter__parameter")
+                                    h3(class="filter__parameter-heading") Количество
+                                    ul(class="filter__quantity-list")
+                                        li(class="filter__quantity-item active") 1
+                                        li(class="filter__quantity-item") 2
+                                        li(class="filter__quantity-item") 3
+                            button(class="btn selection__aside-btn") 
+                                span(class="btn-text") Заказать звонок
+                        div(class="results")
+                            table(class="results__table" id="results__table")
+                                thead(class="results__header")
+                                    tr(class="results__header-list")
+                                        th(class="results__header-item") Корпус
+                                        th(class="results__header-item") Этап
+                                        th(class="results__header-item") Номер
+                                        th(class="results__header-item") Период
+                                        th(class="results__header-item") Объем
+                                        th(class="results__header-item results__header-price") Стоимость &or;
+                                tbody(class="results__body")
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
+                                    tr(class="results__body-list" data-price="4200000")
+                                        td(class="results__body-item") 1кп2
+                                        td(class="results__body-item") 7/8
+                                        td(class="results__body-item") 6D2A
+                                        td(class="results__body-item") 2
+                                        td(class="results__body-item") 48,4 
+                                        td(class="results__body-item") 4 200 000 &#8381;
         script(src="./scripts.min.js" type="text/javascript")

@@ -1,7 +1,18 @@
 html,
 body {
   margin: 0rem;
+  scrollbar-color: #4285F4 rgba(66, 133, 244, 0.3);
+  scrollbar-width: auto; 
 }
+::-webkit-scrollbar {
+  width: 0.625rem;
+  height: 0.625rem;
+  background: rgba(66, 133, 244, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: #4285F4;
+}
+
 body {
   height: 100%;
 }
@@ -71,6 +82,6 @@ img {
 }
 .container {
   max-width: 1146px;
-  width: 1000%;
-  margin: 0 auto 0 0;
+  width: 95%;
+  margin: 0 auto;
 }

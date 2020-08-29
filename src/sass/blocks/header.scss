@@ -3,13 +3,19 @@
   margin-bottom: 2rem;
   align-items: center;
   justify-content: space-between;
-  padding: 3rem 4.5rem 0 0;
-  width: 95%;
+  padding: 3rem 3rem 0 0;
+  width: 100%;
   max-width: 1306px;
-  margin: 0 auto 0 calc(50% - 573px);
+  margin: 0 auto 3rem auto;
+  margin: 0 auto 3rem calc(50% - 573px);
   // calc 50%-by window and 573 - 50% by container 
   @include desktop {
-    margin: 0 auto 0 0;
+    margin: 0 auto 3rem 0;
+  }
+  @include tablets{
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3rem 0 0 0;
   }
   &__btn-text {
     color: #14451f;
@@ -20,9 +26,13 @@
   &__list {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     & .active {
       border-bottom: 0.0625rem solid #4285f4;
-      padding-bottom: 0.3rem;
+    }
+    @include tablets{
+      justify-content: center;
+      margin: 2rem 0;
     }
   }
   &__item {

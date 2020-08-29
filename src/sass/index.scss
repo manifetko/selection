@@ -1,0 +1,227 @@
+.selection {
+  width: 100%;
+  &__header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    @include tablets {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+  &__heading {
+    font-family: "Gilroy", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.375rem;
+    color: #0d3264;
+    @include tablets {
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 2.7rem;
+    }
+    @include phones {
+      font-size: 2.2rem;
+    }
+  }
+  &__type {
+    display: flex;
+    @include tablets {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    & .active {
+      background: #4285f4;
+      & .btn-text {
+        color: #fff;
+      }
+    }
+    &-btn {
+      margin-left: 1.25rem;
+      &:first-child {
+        margin-left: 0;
+      }
+      @include phones {
+        margin: 0 0 1rem 0;
+      }
+    }
+  }
+  &__wrap {
+    display: flex;
+    @include tablets {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    margin-right: 3.75rem;
+    max-width: 17.5rem;
+    width: 100%;
+    @include tablets {
+      margin: 0 0 2rem 0;
+    }
+    &-btn {
+      background: #4285f4;
+      justify-content: center;
+      & .btn-text {
+        color: #fff;
+        margin: 0;
+      }
+    }
+  }
+}
+.filter {
+  margin-bottom: 1.25rem;
+  border-radius: 0.1875rem;
+  border: 0.0625rem solid #4285f4;
+  padding: 2.5rem 1rem;
+  &__parameter {
+    margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    & .active {
+      background: #4285f4;
+      color: #fff;
+    }
+    &-heading {
+      font-family: "Gilroy", sans-serif;
+      font-weight: normal;
+      font-size: 1.125rem;
+      color: #000000;
+      margin-bottom: 1.25rem;
+    }
+  }
+  &__values-wrap {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__value-lp,
+  &__value-rp {
+    font-family: "Gilroy", sans-serif;
+    font-weight: normal;
+    font-size: 0.875rem;
+    color: #000000;
+    border-bottom: 0.03125rem solid #4285f4;
+  }
+  &__quantity-list {
+    display: flex;
+    justify-content: center;
+  }
+  &__quantity-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.625rem 0.6875rem;
+    border-radius: 0.1875rem;
+    border: 0.0625rem solid #4285f4;
+    font-family: "Gilroy", sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #000;
+    margin-right: 1.75rem;
+    cursor: pointer;
+    &:last-child {
+      margin: 0;
+    }
+  }
+  &__slider{
+    width:100%;
+    height:0.125rem;
+    background: #E7F7E0;
+    position:relative;
+    margin:0 1rem 1.25rem 1rem;
+  }
+  &__slider &__bar{
+    position:absolute;
+    left:3rem;
+    background: #4285F4;
+    height:100%;
+  }
+  &__slider &__bar &__lp,&__slider &__bar &__rp{
+    cursor:pointer;
+    background:rgba(66, 133, 244, 1);
+    width:0.625rem;
+    height:0.625rem;
+    border:0.1875rem solid #d0e1fc;
+    border-radius:100%;
+    position:absolute;
+    line-height:400%;
+    color:white;
+    user-select:none;
+  }
+  &__slider &__bar &__lp{
+    left:0px;
+    top: -0.25rem;
+  }
+  &__slider &__bar &__rp{
+    left:100%;
+    top: -0.25rem;
+  }
+}
+.results {
+  width: 100%;
+  max-height: 30.625rem;
+  overflow: scroll;
+  padding-right: 3rem;
+  overflow-x: hidden;
+  @include tablets {
+    padding: 0 1rem 1rem 0;
+  }
+  @include phones {
+    overflow-x: scroll;
+  }
+  &__table {
+    width: 100%;
+  }
+  &__header {
+    border-bottom: 0.03125rem solid rgba(20, 69, 31, 0.5);
+    &-price {
+      cursor: pointer;
+    }
+    &-list {
+      width: 100%;
+    }
+    &-item {
+      padding-bottom: 1.5rem;
+      font-family: "Gilroy", sans-serif;
+      font-weight: normal;
+      font-size: 1.125rem;
+      color: #14451f;
+      text-align: center;
+    }
+  }
+  &__body {
+    &-list {
+      width: 100%;
+      border-radius: 2px;
+    }
+    &-item {
+      padding: 0.875rem 0;
+      text-align: center;
+      font-family: "Gilroy", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 0.875rem;
+      color: #000000;
+      cursor: pointer;
+      &:first-child {
+        border-radius: 0.1875rem 0 0 0.1875rem;
+      }
+      &:last-child {
+        border-radius: 0 0.1875rem 0.1875rem 0;
+      }
+    }
+  }
+}
+.active .results__body-item {
+  background: #4285f4;
+  color: #fff;
+}
