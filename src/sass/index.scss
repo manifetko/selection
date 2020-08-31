@@ -178,8 +178,6 @@
   overflow-x: hidden;
   @include tablets {
     padding: 0 1rem 1rem 0;
-  }
-  @include phones {
     overflow-x: scroll;
   }
   &__table {
@@ -194,13 +192,16 @@
       width: 100%;
     }
     &-item {
-      padding-bottom: 1.5rem;
+      padding: 0 1rem 1.5rem 1rem;
       font-family: "Gilroy", sans-serif;
       font-weight: normal;
       font-size: 1.125rem;
       color: #14451f;
       text-align: center;
       white-space: nowrap;
+      @include phones{
+        padding-bottom: 1rem;
+      }
     }
   }
   &__body {
