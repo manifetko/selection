@@ -85,6 +85,7 @@ filterQuantity.each((ndx, item) => {
 });
 var mouseDownLeft = false;
 var mouseDownRight = false;
+var md = new MobileDetect(window.navigator.userAgent);
 function scrollFilter(parameter, sign) {
   var leftDote = parameter.find(".filter__lp");
   var rightDote = parameter.find(".filter__rp");
@@ -112,7 +113,6 @@ function scrollFilter(parameter, sign) {
     "margin-right": `${positionMax}px`
   });
   var pos = parameter.offset();
-  var zIndex = 0;
   function doteClick(dote) {
     dote.on("mousedown touchstart", () => {
       if (dote === leftDote) {
@@ -121,9 +121,13 @@ function scrollFilter(parameter, sign) {
       if (dote === rightDote) {
         mouseDownRight = true;
       }
-      parameter.on("mousemove touchmove", () => {
+      parameter.on("mousemove touchmove", e => {
         var elem_left = pos.left.toFixed(0);
         var x = event.pageX - elem_left;
+        if (md.mobile()) {
+          x = event.changedTouches[0].pageX - elem_left;
+        }
+        x = parseInt(x);
         if (x < 0) {
           x = 0;
         }
@@ -131,14 +135,8 @@ function scrollFilter(parameter, sign) {
           x = parameterWidth;
         }
         if (mouseDownLeft === true) {
-          if (positionMax + positionMin <= parameterWidth) {
-            if (positionMin === parameterWidth) {
-              zIndex = zIndex + 1;
-              leftDote.css({
-                "z-index": `${zIndex}`
-              });
-            }
-            positionMax = x;
+          positionMin = x;
+          if (positionMin + positionMax < parameterWidth - 10) {
             positionMin = Math.round((positionMin / parameterWidth) * max);
             positionMin = (positionMin + "").replace(
               /(\d)(?=(\d\d\d)+([^\d]|$))/g,
@@ -152,14 +150,8 @@ function scrollFilter(parameter, sign) {
           }
         }
         if (mouseDownRight === true) {
-          if (positionMax + positionMin <= parameterWidth) {
-            if (positionMax === parameterWidth) {
-              zIndex = zIndex + 1;
-              rightDote.css({
-                "z-index": `${zIndex}`
-              });
-            }
-            positionMax = parameterWidth - x;
+          positionMax = parameterWidth - x;
+          if (positionMin + positionMax < parameterWidth - 10) {
             positionMax = Math.round(
               ((parameterWidth - positionMax) / parameterWidth) * max
             );
@@ -179,7 +171,7 @@ function scrollFilter(parameter, sign) {
   }
   doteClick(leftDote);
   doteClick(rightDote);
-  $("body").on("mouseup touchend", () => {
+  $("body").on("touchend mouseup", () => {
     mouseDownLeft = false;
     mouseDownRight = false;
   });
