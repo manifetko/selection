@@ -4,8 +4,12 @@ var priceIncrease = true;
 sort_rows("results__table", "price", 0, Number);
 tableRow.each((ndx, item) => {
   $(item).on("click", () => {
-    tableRow.removeClass("active");
-    $(item).addClass("active");
+    if ($(item).hasClass("active")) {
+      tableRow.removeClass("active");
+    } else {
+      tableRow.removeClass("active");
+      $(item).addClass("active");
+    }
   });
 });
 //-----------------------------------------------------------
@@ -71,118 +75,115 @@ headerPrice.on("click", () => {
 const filterQuantity = $(".filter__quantity-item");
 filterQuantity.each((ndx, item) => {
   $(item).on("click", () => {
-    filterQuantity.removeClass("active");
-    $(item).addClass("active");
+    if ($(item).hasClass("active")) {
+      filterQuantity.removeClass("active");
+    } else {
+      filterQuantity.removeClass("active");
+      $(item).addClass("active");
+    }
   });
 });
-function stringToNumber(element) {
-  Number.parseInt(element.html().replace(/[\s.]/g, ""));
-}
-
-var twobombSlider = (function() {
-  var drag = false;
-  var values = [];
-
-  $(".filter__slider").each(function(i, e) {
-    updateView(e);
+var mouseDownLeft = false;
+var mouseDownRight = false;
+function scrollFilter(parameter, sign) {
+  var leftDote = parameter.find(".filter__lp");
+  var rightDote = parameter.find(".filter__rp");
+  var minText = parameter.find(".filter__value-lp");
+  var maxText = parameter.find(".filter__value-rp");
+  var doteBar = parameter.find(".filter__bar");
+  var max = doteBar.attr("data-max");
+  var parameterWidth = parameter.width();
+  var positionMin = max * leftDote.attr("data-pos");
+  var positionMax = max * rightDote.attr("data-pos");
+  positionMin = (positionMin + "").replace(
+    /(\d)(?=(\d\d\d)+([^\d]|$))/g,
+    "$1 "
+  );
+  positionMax = (positionMax + "").replace(
+    /(\d)(?=(\d\d\d)+([^\d]|$))/g,
+    "$1 "
+  );
+  minText.html(`${positionMin} ${sign}`);
+  maxText.html(`${positionMax} ${sign}`);
+  positionMin = parameterWidth * leftDote.attr("data-pos");
+  positionMax = parameterWidth - parameterWidth * rightDote.attr("data-pos");
+  doteBar.css({
+    "margin-left": `${positionMin}px`,
+    "margin-right": `${positionMax}px`
   });
-  $(
-    ".filter__slider>.filter__bar>.filter__lp,.filter__slider>.filter__bar>.filter__rp"
-  ).bind("mousedown", function() {
-    drag = $(this);
-  });
-  $(document).bind("mousemove", function(e) {
-    if (!drag) return;
-    var x =
-      (e.pageX -
-        $(drag).outerWidth() / 2 -
-        $(drag)
-          .parent()
-          .parent()
-          .offset().left) /
-      $(drag)
-        .parent()
-        .parent()
-        .outerWidth();
-    if (x < 0) x = 0;
-    if (x > 1) x = 1;
-    var rp = $(drag)
-      .parent()
-      .find(".filter__rp");
-    var lp = $(drag)
-      .parent()
-      .find(".filter__lp");
-    if ($(drag).hasClass("lp") && x > $(rp).attr("data-pos")) {
-      $(rp).attr("data-pos", x);
-    }
-    if ($(drag).hasClass("rp") && x < $(lp).attr("data-pos")) {
-      $(lp).attr("data-pos", x);
-    }
-    $(drag).attr("data-pos", x);
-    updateView(
-      $(drag)
-        .parent()
-        .parent()
-    );
-  });
-  $(document).bind("mouseup", function() {
-    drag = false;
-  });
-  function updateView(slider) {
-    var startVal = parseInt(
-      $(slider)
-        .find(".filter__bar")
-        .data("start")
-    );
-    var endVal = parseInt(
-      $(slider)
-        .find(".filter__bar")
-        .data("end")
-    );
-    if (startVal > endVal) endVal = startVal;
-    startVal = startVal || 0;
-    endVal = endVal || 100;
-    var values = [];
-    for (var i = startVal; i <= endVal; i++) values.push(i);
-    var l = $(slider)
-      .find(".filter__lp")
-      .attr("data-pos");
-    var r = $(slider)
-      .find(".filter__rp")
-      .attr("data-pos");
-    var x = $(slider).outerWidth() * l;
-    var w = (r - l) * $(slider).outerWidth();
-    $(slider)
-      .find(".filter__bar")
-      .css({ left: x + "px", width: w + "px" });
-    var index = Math.round(values.length * l);
-    if (index >= values.length) index = values.length - 1;
-    if ($(slider).parent(".filter__weight")) {
-      $(slider)
-        .siblings(".filter__values-wrap")
-        .children(".filter__value-lp")
-        .html(values[index] + "кг");
-    }
-    if ($(slider).parent(".filter__price")) {
-        $(slider)
-          .siblings(".filter__values-wrap")
-          .children(".filter__value-lp")
-          .html(values[index] + "&#8381;");
+  var pos = parameter.offset();
+  var zIndex = 0;
+  function doteClick(dote) {
+    dote.on("mousedown touchstart", () => {
+      if (dote === leftDote) {
+        mouseDownLeft = true;
       }
-    index = Math.round(values.length * r);
-    if (index >= values.length) index = values.length - 1;
-    if ($(slider).parent(".filter__weight")) {
-      $(slider)
-        .siblings(".filter__values-wrap")
-        .children(".filter__value-rp")
-        .html(values[index] + "кг");
-    }
-    if ($(slider).parent(".filter__price")) {
-        $(slider)
-          .siblings(".filter__values-wrap")
-          .children(".filter__value-rp")
-          .html(values[index] + "&#8381;");
+      if (dote === rightDote) {
+        mouseDownRight = true;
       }
+      parameter.on("mousemove touchmove", () => {
+        var elem_left = pos.left.toFixed(0);
+        var x = event.pageX - elem_left;
+        if (x < 0) {
+          x = 0;
+        }
+        if (x >= parameterWidth) {
+          x = parameterWidth;
+        }
+        if (mouseDownLeft === true) {
+          if (positionMax + positionMin <= parameterWidth) {
+            if (positionMin === parameterWidth) {
+              zIndex = zIndex + 1;
+              leftDote.css({
+                "z-index": `${zIndex}`
+              });
+            }
+            positionMax = x;
+            positionMin = Math.round((positionMin / parameterWidth) * max);
+            positionMin = (positionMin + "").replace(
+              /(\d)(?=(\d\d\d)+([^\d]|$))/g,
+              "$1 "
+            );
+            minText.html(`${positionMin} ${sign}`);
+            positionMin = x;
+            doteBar.css({
+              "margin-left": `${positionMin}px`
+            });
+          }
+        }
+        if (mouseDownRight === true) {
+          if (positionMax + positionMin <= parameterWidth) {
+            if (positionMax === parameterWidth) {
+              zIndex = zIndex + 1;
+              rightDote.css({
+                "z-index": `${zIndex}`
+              });
+            }
+            positionMax = parameterWidth - x;
+            positionMax = Math.round(
+              ((parameterWidth - positionMax) / parameterWidth) * max
+            );
+            positionMax = (positionMax + "").replace(
+              /(\d)(?=(\d\d\d)+([^\d]|$))/g,
+              "$1 "
+            );
+            maxText.html(`${positionMax} ${sign}`);
+            positionMax = parameterWidth - x;
+            doteBar.css({
+              "margin-right": `${positionMax}px`
+            });
+          }
+        }
+      });
+    });
   }
-})();
+  doteClick(leftDote);
+  doteClick(rightDote);
+  $("body").on("mouseup touchend", () => {
+    mouseDownLeft = false;
+    mouseDownRight = false;
+  });
+}
+scrollFilter($(".filter__weight"), "кг");
+scrollFilter($(".filter__price"), "&#8381");
 // filter

@@ -15,7 +15,7 @@ task("html", () => {
     .pipe(pug())
     .pipe(dest("dist"));
 });
-const libs = ["node_modules/jquery/dist/jquery.js", "./src/js/*.js"];
+const libs = ["node_modules/jquery/dist/jquery.js","./src/js/*.js"];
 task("scripts", () => {
   return src(libs)
     .pipe(concat("scripts.min.js"))
