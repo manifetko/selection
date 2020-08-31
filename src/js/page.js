@@ -3,7 +3,8 @@ const headerPrice = $(".results__header-price");
 var priceIncrease = true;
 sort_rows("results__table", "price", 0, Number);
 tableRow.each((ndx, item) => {
-  $(item).on("click", () => {
+  $(item).on("click", e => {
+    e.preventDefault();
     if ($(item).hasClass("active")) {
       tableRow.removeClass("active");
     } else {
@@ -60,7 +61,8 @@ function sort_rows(id, data, dir, type) {
     last_row = all_trs[i];
   }
 }
-headerPrice.on("click", () => {
+headerPrice.on("click", e => {
+  e.preventDefault();
   if (priceIncrease === true) {
     priceIncrease = false;
     headerPrice.html("Стоимость &and;");
@@ -74,7 +76,8 @@ headerPrice.on("click", () => {
 // table (sort_rows is not my code, because this function realized with native js )
 const filterQuantity = $(".filter__quantity-item");
 filterQuantity.each((ndx, item) => {
-  $(item).on("click", () => {
+  $(item).on("click", e => {
+    e.preventDefault();
     if ($(item).hasClass("active")) {
       filterQuantity.removeClass("active");
     } else {
@@ -86,6 +89,7 @@ filterQuantity.each((ndx, item) => {
 var mouseDownLeft = false;
 var mouseDownRight = false;
 var md = new MobileDetect(window.navigator.userAgent);
+// sing for кг and ₽, parameter is wrapper-block of filter
 function scrollFilter(parameter, sign) {
   var leftDote = parameter.find(".filter__lp");
   var rightDote = parameter.find(".filter__rp");
@@ -95,15 +99,16 @@ function scrollFilter(parameter, sign) {
   var max = doteBar.attr("data-max");
   var parameterWidth = parameter.width();
   var positionMin = max * leftDote.attr("data-pos");
+  // for start position  >
   var positionMax = max * rightDote.attr("data-pos");
   positionMin = (positionMin + "").replace(
     /(\d)(?=(\d\d\d)+([^\d]|$))/g,
     "$1 "
-  );
+  ); // replace for number of digits
   positionMax = (positionMax + "").replace(
     /(\d)(?=(\d\d\d)+([^\d]|$))/g,
     "$1 "
-  );
+  ); // replace for number of digits
   minText.html(`${positionMin} ${sign}`);
   maxText.html(`${positionMax} ${sign}`);
   positionMin = parameterWidth * leftDote.attr("data-pos");
@@ -112,36 +117,44 @@ function scrollFilter(parameter, sign) {
     "margin-left": `${positionMin}px`,
     "margin-right": `${positionMax}px`
   });
+  // for start position <
   var pos = parameter.offset();
   function doteClick(dote) {
     dote.on("mousedown touchstart", () => {
+      // for check which dote was pressed >
       if (dote === leftDote) {
         mouseDownLeft = true;
       }
       if (dote === rightDote) {
         mouseDownRight = true;
       }
+      // for check which dote was pressed <
       parameter.on("mousemove touchmove", e => {
         var elem_left = pos.left.toFixed(0);
         var x = event.pageX - elem_left;
+        //for check device, because mousemove didnt work on mobile >
         if (md.mobile()) {
           x = event.changedTouches[0].pageX - elem_left;
         }
+        //for check device, because mousemove didnt work on mobile <
         x = parseInt(x);
+        // so that dote does not go beyond the boundaries >
         if (x < 0) {
           x = 0;
         }
         if (x >= parameterWidth) {
           x = parameterWidth;
         }
+        // so that dote does not go beyond the boundaries <
         if (mouseDownLeft === true) {
           positionMin = x;
           if (positionMin + positionMax < parameterWidth - 10) {
+            // condition so that dotes do not overlap each other
             positionMin = Math.round((positionMin / parameterWidth) * max);
             positionMin = (positionMin + "").replace(
               /(\d)(?=(\d\d\d)+([^\d]|$))/g,
               "$1 "
-            );
+            ); // replace for number of digits
             minText.html(`${positionMin} ${sign}`);
             positionMin = x;
             doteBar.css({
@@ -152,13 +165,14 @@ function scrollFilter(parameter, sign) {
         if (mouseDownRight === true) {
           positionMax = parameterWidth - x;
           if (positionMin + positionMax < parameterWidth - 10) {
+            // condition so that dotes do not overlap each other
             positionMax = Math.round(
               ((parameterWidth - positionMax) / parameterWidth) * max
             );
             positionMax = (positionMax + "").replace(
               /(\d)(?=(\d\d\d)+([^\d]|$))/g,
               "$1 "
-            );
+            ); // replace for number of digits
             maxText.html(`${positionMax} ${sign}`);
             positionMax = parameterWidth - x;
             doteBar.css({
@@ -174,7 +188,7 @@ function scrollFilter(parameter, sign) {
   $("body").on("touchend mouseup", () => {
     mouseDownLeft = false;
     mouseDownRight = false;
-  });
+  }); //for catch the end event
 }
 scrollFilter($(".filter__weight"), "кг");
 scrollFilter($(".filter__price"), "&#8381");
