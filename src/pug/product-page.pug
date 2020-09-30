@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+    head
+        title Выборщик
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        link(href="./styles.min.css" type="text/css" rel="stylesheet")
+    body
+        div(class="wrapper")
+            include ./blocks/header.pug
+            div(class="container")
+                div(class="visual-select")
+                    div(class="visual-select__header")
+                        div(class="breadcrumbs")
+                            a(class="breadcrumbs__back")
+                                svg(width="20" height="20" viewBox="0 0 20 20")
+                                    use(xlink:href="./imgs/sprites.svg#back")
+                            ul(class="breadcrumbs__list")
+                                li(class="breadcrumbs__item active") Выбор продукта &#92;
+                                li(class="breadcrumbs__item") 4TK &#92;
+                                li(class="breadcrumbs__item") 19 корпус &#92;
+                                li(class="breadcrumbs__item") период 5 &#92;
+                                li(class="breadcrumbs__item") 9 этап
+                        h1(class="product__name") Продукт 214
+                    div(class="product")
+                        aside(class="product__sidebar")
+                            ul(class="product__list-par")
+                                li(class="product__item-par")
+                                    span(class="product__par") Этап
+                                    span(class="product__par-value") 8
+                                li(class="product__item-par")
+                                    span(class="product__par") Период
+                                    span(class="product__par-value")  2
+                                li(class="product__item-par")
+                                    span(class="product__par") Объем
+                                    span(class="product__par-value")  48 
+                                li(class="product__item-par")
+                                    span(class="product__par") Объем зоны
+                                    span(class="product__par-value")  12
+                                li(class="product__item-par")
+                                    span(class="product__par") Стоимость
+                                    span(class="product__par-value")  14 200 ₽
+                                li(class="product__item-par")
+                                    span(class="product__par") Готовность
+                                    span(class="product__par-value") Проект сдан
+                        img(src="./imgs/product.jpg" class="product__img")
+                    div(class="product__btn-wrap")
+                        button(class="btn product__btn product__btn--blue")
+                            span(class="btn-text") Оставить заявку
+                        button(class="btn product__btn")
+                            span(class="btn-text") Анализ

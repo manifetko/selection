@@ -15,6 +15,12 @@
 }
 @font-face {
   font-family: "Gilroy";
+  src: url("./fonts/gilroy-extrabold.ttf");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilroy";
   src: url("./fonts/gilroy-regular.ttf");
   font-weight: normal;
   font-style: normal;
@@ -37,7 +43,7 @@
     font-style: normal;
     font-weight: normal;
     font-size: 1rem;
-    color: #2f80ed;
+    color: #96CEED;
     white-space: nowrap;
   }
 }
