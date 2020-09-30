@@ -255,6 +255,9 @@
     align-items: center;
     padding: 0;
   }
+  &-page{
+    padding: 0;
+  }
   &__name {
     font-family: "Gilroy", sans-serif;
     font-weight: bold;
@@ -265,7 +268,7 @@
     display: flex;
     width: 100%;
     justify-content: flex-start;
-    @include tablets{
+    @include tablets {
       justify-content: center;
     }
   }
@@ -273,10 +276,10 @@
     max-width: 14.75rem;
     width: 100%;
     justify-content: center;
-    &--blue{
-      background: #2F80ED;
+    &--blue {
+      background: #2f80ed;
       margin-right: 1.5rem;
-      & .btn-text{
+      & .btn-text {
         color: #fff;
       }
     }
@@ -332,8 +335,8 @@
         right: 92%;
       }
       &:nth-child(2) {
-        top: 70%;
-        right: 49%;
+        top: 46%;
+        right: 73%;
       }
       &:nth-child(3) {
         top: 80%;
@@ -362,10 +365,10 @@
     }
     &-value {
       font-family: "Gilroy", sans-serif;
-      font-size: 1.0625rem;
+      font-size: 0.75rem;
       color: #fff;
       position: absolute;
-      top: 50%;
+      top: 37%;
       left: 50%;
       transform: translate(-50%, -50%);
     }
